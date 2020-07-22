@@ -1,0 +1,31 @@
+.example-container {
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    border: 1px solid #555;
+  }
+  
+  .example-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    background: #ffff;
+  }
+  .sidebar-logo{
+    padding: 40px 40px 20px 50px;
+    
+    font-size: 20px;
+    background-color: #fff;
+  }
+  .sidebar-navigation {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+    height: 50px;
+    background-color: #2C98F0;
+  }
+  

@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="test-btn">
+      <button type="button" class="btn btn-outline-secondary "  >
+        TEST
+    </button>
+    </div>
+  <mat-card class="card-container">
+  <mat-card-content class="card" style="width: 10rem;" *ngFor="let product of products">
+      <a [routerLink]="['/presentation',product.id]">
+        <img src="../../../assets/fond.png" class="card-img-top" alt="..."  >
+      </a>
+      <mat-card-title class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+        
+      </mat-card-title>
+    </mat-card-content>
+  </mat-card>
