@@ -1,0 +1,22 @@
+<div class="login-wrapper">
+    <div class="login">
+      <h1>Login to Clubby</h1>
+      <br>
+      <br>
+      <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+        <mat-form-field>
+          <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+          <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+          <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-error *ngIf="!message">Credentials are invalid</mat-error>
+        <button mat-raised-button color="accent" class="button button4" type="submit">Login</button>
+        <button mat-raised-button color="accent"  class="button button4" routerLink="/signup">Sign Up</button>
+      </form>
+    </div>
+  </div>
+  
