@@ -10,6 +10,7 @@ import { CompanyService } from './company.service';
 })
 export class AuthService {
   isAuthenticated = false;
+  named : String ;
   accessLevel : string ;
   private token: string;
   private id : string ;
