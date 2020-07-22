@@ -9,7 +9,9 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 message : Boolean = true ;
-  constructor(public authService: AuthService) { }
+  constructor(
+    public authService: AuthService
+    ) { }
 
   onLogin(form: NgForm) {
     if (form.invalid) {

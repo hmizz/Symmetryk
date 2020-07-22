@@ -1,9 +1,9 @@
-<div class="login-wrapper">
+<!-- <div class="login-wrapper">
     <div class="login">
       <h1>Login to Clubby</h1>
       <br>
       <br>
-      <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <form  #loginForm="ngForm">
         <mat-form-field>
           <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
           <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
@@ -18,5 +18,38 @@
         <button mat-raised-button color="accent"  class="button button4" routerLink="/signup">Sign Up</button>
       </form>
     </div>
-  </div>
+  </div> -->
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div  class="logo">
+        <img src="../../../assets/logo-blue.png" alt="">
+      </div>
+      
+      
+    </mat-card-header>
+    <div class="title" >Login</div>
+      <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+              <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+              <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+          </mat-form-field></td>
+        </tr></table>
+      
+        <mat-error *ngIf="!message">Credentials are invalid</mat-error>
+    
+    <mat-card-actions>
+      <button mat-raised-button type="submit" class="btn">Login</button>
+    </mat-card-actions>
+  </form>
+  </mat-card>
   

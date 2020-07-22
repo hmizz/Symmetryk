@@ -1,0 +1,18 @@
+.navbar{
+    background-color: #2C98F0;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+mat-toolbar-row{
+    background-color: #2C98F0;
+    display: flex;
+    justify-content: space-between;
+}
+.login-btn{
+  
+    margin-left: 450px;
+    background-color: #ffffff;
+    color: #2C98F0;
+}
