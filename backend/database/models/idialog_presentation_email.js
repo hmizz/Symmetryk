@@ -1,7 +1,8 @@
-/* jshint indent: 1 */
+const { DataTypes } = require('sequelize');
+const db = require('../db');
+const presentation_slide = require('./idialog_presentation_has_slide');
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('idialog_presentation_email', {
+const presentation_email = db.define('Presentation_Email', {
 		id: {
 			autoIncrement: true,
 			type: DataTypes.INTEGER(10).UNSIGNED,
@@ -75,8 +76,8 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		sequelize,
+		db,
 		timestamps: false,
 		tableName: 'idialog_presentation_email'
 	});
-};
+module.exports = presentation_email ;

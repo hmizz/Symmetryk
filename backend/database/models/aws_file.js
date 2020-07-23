@@ -1,7 +1,7 @@
-/* jshint indent: 1 */
+const { DataTypes } = require('sequelize');
+const db = require('../db');
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('aws_file', {
+const aws_file = db.define('Aws_File', {
 		id: {
 			autoIncrement: true,
 			type: DataTypes.INTEGER(10).UNSIGNED,
@@ -85,8 +85,8 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		sequelize,
+		db,
 		timestamps: false,
 		tableName: 'aws_file'
 	});
-};
+module.exports = aws_file ;

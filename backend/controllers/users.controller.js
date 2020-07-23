@@ -1,7 +1,6 @@
-const db = require("../database/db");
-const User = db.users ;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const User = require("../database/models/users");
 
 module.exports.userLogin = function (req, res) {
 User.findOne({
@@ -55,7 +54,7 @@ res.status(500).json({
   }
 
 module.exports.userProfile = function (req, res) {
-
+res.sendStatus(200);
 };
 
 module.exports.allUsers = function (req, res) {

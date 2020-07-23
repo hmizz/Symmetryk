@@ -1,6 +1,7 @@
+const { DataTypes } = require('sequelize');
+const db = require('../db');
 
-module.exports = function(sequelize, DataTypes) {
-	const users_has_products = sequelize.define('users_has_products', {
+module.exports = db.define('Users_Products', {
 		id: {
 			autoIncrement: true,
 			type: DataTypes.INTEGER(10),
@@ -30,21 +31,17 @@ module.exports = function(sequelize, DataTypes) {
 		created_at: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
 		},
 		updated_at: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
 		},
 		deleted_at: {
 			type: DataTypes.DATE,
 			allowNull: true
 		}
 	}, {
-		sequelize,
+		db,
 		timestamps: false,
 		tableName: 'idialog_users_has_products'
 	});
-return users_has_products ;
-};
