@@ -1,18 +1,50 @@
-.navbar{
+/* .navbar{
     background-color: #2C98F0;
-    display: flex;
-    justify-content: flex-end;
     
+    box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
 }
+
 
 mat-toolbar-row{
     background-color: #2C98F0;
     display: flex;
-    justify-content: space-between;
-}
+    
+}*/
 .login-btn{
-  
-    margin-left: 450px;
+  justify-self: end;
+    
     background-color: #ffffff;
     color: #2C98F0;
+} 
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .example-icon {
+    padding: 0 0px;
+    color: #ffffff;
+  }
+  mat-toolbar-row{
+    background-color: #2C98F0;
+    display: flex;
+    padding-right: 20px;
+    box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
 }
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner .8s linear infinite;
+  }

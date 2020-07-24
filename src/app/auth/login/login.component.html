@@ -33,22 +33,22 @@
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-              <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+              <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput required email>
               <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
           <td><mat-form-field class="example-full-width">
-            <input matInput type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+            <input matInput type="password" name="password" ngModel matInput placeholder="Password" #passwordInput required>
             <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
           </mat-form-field></td>
         </tr></table>
       
-        <mat-error *ngIf="!message">Credentials are invalid</mat-error>
+        <mat-error *ngIf="!isAuthenticated">Credentials are invalid</mat-error>
     
     <mat-card-actions>
-      <button mat-raised-button type="submit" class="btn">Login</button>
+      <button mat-raised-button [class.spinner]="loading" [disabled]="loading" type="submit" class="btn">Login</button>
     </mat-card-actions>
   </form>
   </mat-card>

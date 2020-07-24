@@ -18,15 +18,14 @@ export class ProductsService {
 
   getproducts() {
     this.http
-      .get<{ message: string; products: any }>("http://localhost:3000/api/products/productsList/"+ this.authService.getID())
+      .get<{products: any }>("http://192.168.1.19:3000/api/products/productsList/"+ this.authService.getID())
       .pipe(
         map((productData) => {
           return productData.products.map((product) => {
             return {
               id: product.id,
-
-              name: product.name,
               home_thumb_id:product.home_thumb_id,
+              name: product.name,
               created_at:null,
               updated_at:null
             };
@@ -49,7 +48,7 @@ export class ProductsService {
     return this.products ;
   }
   getproduct(id: string){
-    return this.http.get<{_id: number, name: string, user_id: string, thumb_path:string}>("http://localhost:3000/api/products/" + id);
+    return this.http.get<{_id: number, name: string, user_id: string, thumb_path:string}>("http://192.168.1.19:3000/api/products/" + id);
   }
 
 }

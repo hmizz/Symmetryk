@@ -15,7 +15,7 @@ private companyName: string ;
 
   getUserCompany(companyId: number) {
     this.http
-      .get<{name: string}>("http://localhost:3000/api/company/"+ companyId)
+      .get<{name: string}>("http://192.168.1.19:3000/api/company/"+ companyId)
       .pipe(
         map((companyData) => {
           this.companyName = companyData.name;

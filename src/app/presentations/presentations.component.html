@@ -1,0 +1,48 @@
+<!-- <div class="cards-deck" >
+   
+    <div class="cards-wrapper" *ngFor="let presentation of presentations">
+ <div class="presentations-wrapper" font-size="large"  font-weight= "bold">
+                        {{presentation.name}}
+                        </div>
+                    <div class="card">
+                        <div class="card-header">
+                                    <div class="presentation-description">          
+                                                <ul class="ul">Created at :{{presentation.created_at}} </ul> 
+                                                <ul  class="ul">updated at:{{presentation.updated_at}}</ul>
+                                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="column"  >
+                             <app-slide>
+                             </app-slide>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div> -->
+
+            <mat-card class="example-card" >
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{presentation.name}}</mat-card-title>
+                  <mat-card-subtitle>
+                      <ul class="pres-info">
+                        <li>Created at :{{presentation.created_at}}</li> 
+                        <li>updated at:{{presentation.updated_at}}</li> 
+                      </ul>
+                   
+                  </mat-card-subtitle>
+                  <span class="example-spacer"></span>
+                  <mat-card-actions>
+                    <button mat-raised-button class="play-btn">Play</button>
+                    <button mat-raised-button>Clone</button>
+                    <button mat-raised-button>E-mail</button>
+                  </mat-card-actions>
+                </mat-card-header>
+                
+                <mat-card-content >
+                    <app-slides>
+                    </app-slides>
+                </mat-card-content>
+                
+              </mat-card>

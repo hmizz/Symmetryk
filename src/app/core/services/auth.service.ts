@@ -45,11 +45,13 @@ export class AuthService {
       email: email,
       password: password,
     };
+    console.log(authData)
     this.http
       .post<{ token: string, companyId: number, expiresIn: number, id: string, firstName:string}>(
-        "http://localhost:3000/api/user/login",
+        "http://192.168.1.19:3000/api/user/login",
         authData
       )
+      
       .subscribe(
         (response) => {
           const token = response.token;
@@ -100,6 +102,7 @@ export class AuthService {
         this.logout();
       }, duration * 1000);
     }
+   
 
   logout() {
     this.token = null;

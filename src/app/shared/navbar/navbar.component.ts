@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit{
   userAccess: string;
   username: String;
   @Output() searchcriteria = new EventEmitter<String>();
+  loading = false;
   constructor(public companyService: CompanyService,
     private authService: AuthService,
   ) {
@@ -25,6 +26,7 @@ export class NavbarComponent implements OnInit{
 
 
   onLogout() {
+    this.loading = true;
     this.authService.logout();
   }
   ngOnInit() {

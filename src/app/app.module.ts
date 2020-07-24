@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsComponent } from './products/products.component';
+import { PresentationsComponent } from './presentations/presentations.component';
+import { SlidesComponent } from './slides/slides.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ProductsComponent } from './products/products.component';
     LoginComponent,
     NavbarComponent,
     SidebarComponent,
-    ProductsComponent
+    ProductsComponent,
+    PresentationsComponent,
+    SlidesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,14 @@
 
 <mat-toolbar class="navbar">
     <mat-toolbar-row>
-    <span> <img src="../../../assets/logo.png" width="220px" alt="" class="logo"></span>
-     
-        <button mat-button [matMenuTriggerFor]="menu" class="login-btn" >
-             Menu
+    <a class="logo" href="#"> <img src="../../../assets/logo.png" width="220px" alt="" class="logo"></a>
+    <span class="example-spacer"></span>
+        <button mat-button [matMenuTriggerFor]="menu" class="example-icon" >
+                {{username}}
+            <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" >
-      <button mat-menu-item (click)="onLogout()">
+      <button mat-menu-item (click)="onLogout()"  [class.spinner]="loading" [disabled]="loading">
         <mat-icon>power_settings_new</mat-icon>
         <span>Log out </span>
       </button>

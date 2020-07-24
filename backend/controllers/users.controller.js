@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports.userLogin = function (req, res) {
+  console.log(req.body.email);
+  console.log(req.body.password);
 User.findOne({
   attributes:['id','first_name', 'access_level', 'password', 'company_id'],
 where : {
@@ -48,6 +50,7 @@ where : {
       });
       });
 }).catch((err)=>{
+  console.log(err);
 res.status(500).json({
   error: "Server Failed"
 });

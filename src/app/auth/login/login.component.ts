@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { AuthService } from '../../core/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,9 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-message : Boolean = true ;
+  isAuthenticated : Boolean   ;
+  authListenerSubs: Subscription;
+  loading = false;
   constructor(
     public authService: AuthService
     ) { }
@@ -18,10 +21,18 @@ message : Boolean = true ;
       return;
     }
     this.authService.login(form.value.email, form.value.password);
-    this.message = this.authService.isAuthenticated;
+    console.log(form.value.email);
+    console.log(form.value.password);
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe((isAuthenticated) => {
+        this.isAuthenticated = isAuthenticated;
+      });
+      this.loading = true;
   }
 
   ngOnInit() : void {
+    this.isAuthenticated  = true ;
   }
 
 }
