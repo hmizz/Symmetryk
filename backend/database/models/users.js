@@ -1,10 +1,9 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('Dialog', 'root', 'admin', {
-	host: 'localhost',
-	dialect: 'mysql'
-  });
+const { DataTypes } = require('sequelize');
+const db = require('../db');
+const product = require("./idialog_product");
+const users_products = require("./idialog_users_has_products");
 
-const User = sequelize.define('User', {
+const user = db.define('User', {
 		id: {
 			autoIncrement: true,
 			type: DataTypes.INTEGER(10).UNSIGNED,
@@ -63,9 +62,10 @@ const User = sequelize.define('User', {
 			allowNull: true
 		}
 	}, {
-		sequelize,
+		db,
 		timestamps: false,
 		tableName: 'users'
 	});
-
-module.exports = User ;
+	user.belongsToMany(product, { through: users_products });
+	product.belongsToMany(user, { through: users_products });
+module.exports = user ;

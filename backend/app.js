@@ -10,7 +10,6 @@ const presentationsRoutes = require("./routes/presentations");
 const slidesRoutes = require("./routes/slides");
 
 const app = express();
-
   db.authenticate().then(()=>{
     console.log('Connection has been established successfully.');
     console.log('server is running...')

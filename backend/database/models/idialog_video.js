@@ -1,7 +1,7 @@
-/* jshint indent: 1 */
+const { DataTypes } = require('sequelize');
+const db = require('../db');
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('idialog_video', {
+const video = db.define('Video', {
 		id: {
 			autoIncrement: true,
 			type: DataTypes.INTEGER(10).UNSIGNED,
@@ -59,8 +59,9 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		sequelize,
+		db,
 		timestamps: false,
 		tableName: 'idialog_video'
 	});
-};
+
+	module.exports = video ;

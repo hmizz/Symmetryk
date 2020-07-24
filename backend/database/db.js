@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const User = require("./Models/users");
+//const User = require("./Models/users");
 
 const db = new Sequelize('Dialog', 'remote', 'ILoenRMmM6rFYLFP', {
   host: '192.168.1.19',
@@ -36,4 +36,4 @@ const db = new Sequelize('Dialog', 'remote', 'ILoenRMmM6rFYLFP', {
 
 // db.users.belongsToMany(db.product, {through: 'users_has_products'});
 
-  module.exports = db;
+// db.users.belongsToMany(db.product, {through: 'users_has_products'});

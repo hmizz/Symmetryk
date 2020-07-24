@@ -1,7 +1,9 @@
-/* jshint indent: 1 */
+const { DataTypes } = require('sequelize');
+const db = require('../db');
+const user = require('./users');
+const users_products = require('./idialog_users_has_products');
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('idialog_product', {
+module.exports = db.define('Product', {
 		id: {
 			autoIncrement: true,
 			type: DataTypes.INTEGER(10).UNSIGNED,
@@ -82,8 +84,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		sequelize,
+		db,
 		timestamps: false,
 		tableName: 'idialog_product'
 	});
-};
