@@ -14,12 +14,15 @@ export class ProductsComponent implements OnInit {
   name:string;
   constructor(public productsService: ProductsService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.productsService.getproducts();
     this.productsSub = this.productsService.getproductUpdateListener()
       .subscribe((products: product[]) => {
         this.products = products;
       });
+  }
+  ngOnDestroy(): void {
+    this.productsSub.unsubscribe();
   }
 
 }

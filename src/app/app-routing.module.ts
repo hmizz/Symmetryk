@@ -4,12 +4,11 @@ import { LoginComponent } from './auth/login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { PresentationsComponent } from './presentations/presentations.component';
 
-
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '',redirectTo:'/login',pathMatch:'full'},
   { path: 'products', component: ProductsComponent },
-  { path: 'presentations/:productId', component: PresentationsComponent }
+  { path: ':productId/presentations', component: PresentationsComponent }
 ];
 
 @NgModule({

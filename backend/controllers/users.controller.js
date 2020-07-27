@@ -35,7 +35,6 @@ where : {
         res.status(200).json({
             message: "user valid",
             firstName:user.first_name,
-            companyId : user.company_id,
             expiresIn: 7200,
             token: token,
             id: user.id,

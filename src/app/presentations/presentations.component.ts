@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PresentationsService } from 'src/app/core/services/presentations.service';
 import { presentation } from 'src/app/core/models/presentation-model';
 import { Subscription } from 'rxjs';
@@ -9,22 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './presentations.component.html',
   styleUrls: ['./presentations.component.css']
 })
-export class PresentationsComponent implements OnInit {
-  presentations: presentation []= [];
+export class PresentationsComponent implements OnInit, OnDestroy {
+  public presentations: presentation []= [];
   private presentationsSub: Subscription;
-  productId : number ;
-  name:string;
-  type:string;
-  created_at:string;
-  updated_at:string;
-  sub: any;
+  private productId : number ;
+  private routeSub: Subscription;
+
   constructor(public presentationsService: PresentationsService,private route: ActivatedRoute) { }
 
-  ngOnInit(){
-    this.route.queryParams.subscribe(queryParams => {
-      console.log(queryParams);
+
+  ngOnInit(): void{
+    this.routeSub =this.route.params.subscribe(queryParams => {
       this.productId = Number(queryParams['productId']);
-      console.log(this.productId);
    })
     this.presentationsService.getpresentations(this.productId);
 
@@ -34,5 +30,10 @@ export class PresentationsComponent implements OnInit {
       });
   
     }
+    ngOnDestroy(): void {
+      this.presentationsSub.unsubscribe();
+      this.routeSub.unsubscribe();
+    }
+
 
 }

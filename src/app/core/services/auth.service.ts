@@ -45,9 +45,8 @@ export class AuthService {
       email: email,
       password: password,
     };
-    console.log(authData)
     this.http
-      .post<{ token: string, companyId: number, expiresIn: number, id: string, firstName:string}>(
+      .post<{ token: string, expiresIn: number, id: string, firstName:string}>(
         "http://localhost:3000/api/user/login",
         authData
       )
@@ -65,12 +64,9 @@ export class AuthService {
             this.authStatusListener.next(true);
             const now = new Date();
             const expirationDate = new Date(
-              now.getTime() + expiresInDuration * 1000
-            );
-            console.log(response.companyId);
-            this.saveAuthData(token, expirationDate,response.id, "response.accessLevel",response.firstName, response.companyId);
+              now.getTime() + expiresInDuration * 1000);
+            this.saveAuthData(token, expirationDate,response.id, "response.accessLevel",response.firstName);
             this.router.navigate(["/products"]);
-            this.companyService.getUserCompany(response.companyId);
           }
         },
         (err) => {
@@ -94,7 +90,6 @@ export class AuthService {
       //this.userAcclevel = authdata.accessLevel ;
       this.setAuthTimer(expiresIn/1000);
       this.authStatusListener.next(true);
-      this.companyService.getUserCompany(authdata.companyId);
     }
   }
     private setAuthTimer(duration: number){
@@ -112,13 +107,12 @@ export class AuthService {
     this.clearAuthData();
     this.router.navigate(["/"]);
   }
-  private saveAuthData(token: string, expirationDate: Date,id: string, accessLevel : string,firstName:string, companyId: number) {
+  private saveAuthData(token: string, expirationDate: Date,id: string, accessLevel : string,firstName:string) {
     localStorage.setItem("token", token);
     localStorage.setItem("firstName", firstName);
     localStorage.setItem("expiration", expirationDate.toISOString());
     localStorage.setItem("accesslevel",accessLevel);
     localStorage.setItem("id",id);
-    localStorage.setItem("companyId",companyId.toString());
   }
 
   private clearAuthData() {
@@ -127,7 +121,6 @@ export class AuthService {
     localStorage.removeItem("expiration");
     localStorage.removeItem("accesslevel");
     localStorage.removeItem("id");
-    localStorage.removeItem("companyId")
   }
 
   private getAuthData(){
@@ -136,7 +129,6 @@ export class AuthService {
     const expirationDate = localStorage.getItem("expiration");
     const accessLevel = localStorage.getItem("accesslevel");
     const id = localStorage.getItem("id");
-    const companyId = localStorage.getItem("companyId");
     if(!token && !expirationDate){
       return;
     }
@@ -145,8 +137,7 @@ export class AuthService {
       firstName :firstName,
         expirationDate : new Date(expirationDate),
         id : id,
-        accessLevel : accessLevel,
-        companyId: Number(companyId)
+        accessLevel : accessLevel
     }
   }
 }
