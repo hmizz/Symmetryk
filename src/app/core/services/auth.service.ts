@@ -9,14 +9,13 @@ import { CompanyService } from './company.service';
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthenticated = false;
-  named : String ;
-  accessLevel : string ;
+  private isAuthenticated = false;
+  private accessLevel : string ;
   private token: string;
   private id : string ;
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
-  public username: String;
+  private username: String;
   constructor(private http: HttpClient, private router: Router, private companyService: CompanyService) {}
 
   getToken() {
@@ -50,7 +49,6 @@ export class AuthService {
         "http://localhost:3000/api/user/login",
         authData
       )
-      
       .subscribe(
         (response) => {
           const token = response.token;
