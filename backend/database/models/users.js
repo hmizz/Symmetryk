@@ -66,6 +66,7 @@ const user = db.define('User', {
 		timestamps: false,
 		tableName: 'users'
 	});
+	
 	user.belongsToMany(product, { through: users_products });
 	product.belongsToMany(user, { through: users_products });
 module.exports = user ;

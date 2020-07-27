@@ -48,7 +48,7 @@ export class AuthService {
     console.log(authData)
     this.http
       .post<{ token: string, companyId: number, expiresIn: number, id: string, firstName:string}>(
-        "http://192.168.1.19:3000/api/user/login",
+        "http://localhost:3000/api/user/login",
         authData
       )
       

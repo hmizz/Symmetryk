@@ -18,7 +18,7 @@ export class ProductsService {
 
   getproducts() {
     this.http
-      .get<{products: any }>("http://192.168.1.19:3000/api/products/productsList/"+ this.authService.getID())
+      .get<{products: any }>("http://localhost:3000/api/products/productsList/"+ this.authService.getID())
       .pipe(
         map((productData) => {
           return productData.products.map((product) => {

@@ -18,7 +18,7 @@ export class PresentationsService {
 
   getpresentations(id: Number) {
     this.http
-      .get<{ message: string; presentations: any }>("http://192.168.1.19:3000/api/presentations/list/"+id)
+      .get<{ message: string; presentations: any }>("http://localhost:3000/api/presentations/list/"+id)
       .pipe(
         map((presentationData) => {
           return presentationData.presentations.map((presentation) => {

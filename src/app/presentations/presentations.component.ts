@@ -10,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./presentations.component.css']
 })
 export class PresentationsComponent implements OnInit {
-  Presentations: presentation []= [];
+  presentations: presentation []= [];
   private presentationsSub: Subscription;
- 
+  productId : number ;
   name:string;
   type:string;
   created_at:string;
@@ -21,15 +21,16 @@ export class PresentationsComponent implements OnInit {
   constructor(public presentationsService: PresentationsService,private route: ActivatedRoute) { }
 
   ngOnInit(){
-   this.route.params.subscribe(params => {this.presentationsService.getpresentations(params['product.id']);
-    // this. = this.route.snapshot.paramMap.get('id');
-    // console.log(this.id);
+    this.route.queryParams.subscribe(queryParams => {
+      console.log(queryParams);
+      this.productId = Number(queryParams['productId']);
+      console.log(this.productId);
+   })
+    this.presentationsService.getpresentations(this.productId);
 
-  });
-    
     this.presentationsSub = this.presentationsService.getpresentationUpdateListener()
       .subscribe((presentations: presentation[]) => {
-        this.Presentations = presentations;
+        this.presentations = presentations;
       });
   
     }
