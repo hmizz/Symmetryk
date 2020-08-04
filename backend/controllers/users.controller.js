@@ -1,12 +1,11 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../database/models/users");
+const company = require("../database/models/idialog_companies");
 
 module.exports.userLogin = function (req, res) {
-  console.log(req.body.email);
-  console.log(req.body.password);
 User.findOne({
-  attributes:['id','first_name', 'access_level', 'password', 'company_id'],
+  attributes:['id','first_name', 'access_level', 'password'],
 where : {
   email : req.body.email
 }
@@ -56,12 +55,50 @@ res.status(500).json({
   }
 
 module.exports.userProfile = function (req, res) {
-res.sendStatus(200);
+User.findOne({
+  attributes:['email','first_name','last_name', 'last_login'],
+where : {
+  id : req.params.id
+}
+}).then((profile) => {
+if(!profile)
+return res.status(401).json({
+  error: "Not Found"
+});
+return res.status(200).json({
+  profile: profile
+});
+})
+.catch((err)=>{
+  console.log(err);
+res.status(500).json({
+  error: "Server Failed"
+});
+});
 };
+
+module.exports.logout = function (req, res) {
+  User.update({
+    last_login: req.body.accessTime
+  },{
+  where: {
+    id : req.params.id}
+  }).then(() => {
+  return res.status(200).json({
+    loggedOut: true
+  });
+  })
+  .catch((err)=>{
+    console.log(err);
+  res.status(500).json({
+    loggedOut: false,
+    error: "Server Failed"
+  });
+  });
+  };
 
 module.exports.allUsers = function (req, res) {
  User.findAll().then((data)=> {
-   console.log(data)
    res.status(200).json({
      users: data
    });

@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const db = require('../db');
 const product = require("./idialog_product");
 const users_products = require("./idialog_users_has_products");
+const company = require('./idialog_companies');
 
 const user = db.define('User', {
 		id: {
@@ -66,7 +67,7 @@ const user = db.define('User', {
 		timestamps: false,
 		tableName: 'users'
 	});
-	
+	user.belongsTo(company);
 	user.belongsToMany(product, { through: users_products });
 	product.belongsToMany(user, { through: users_products });
 module.exports = user ;

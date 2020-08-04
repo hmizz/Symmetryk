@@ -16,9 +16,9 @@ export class PresentationsService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getpresentations(id: Number) {
+  getpresentations(id: Number,offset: Number) {
     this.http
-      .get<{ message: string; presentations: any }>("http://localhost:3000/api/presentations/list/"+id)
+      .get<{ message: string; presentations: any }>("http://localhost:3000/api/presentations/list/"+id +"/2/"+ 2)
       .pipe(
         map((presentationData) => {
           return presentationData.presentations.map((presentation) => {

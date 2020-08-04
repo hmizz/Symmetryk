@@ -4,4 +4,5 @@ export class product{
     name:string;
     created_at: Date;
     updated_at: Date;
+    thumbURL : string ;
 }

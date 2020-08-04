@@ -13,7 +13,7 @@ module.exports.Presentations = async function (req, res) {
         return res.status(404).json({
         message: "Not Found",
         });
-        slideController.getSlidesPerPresentation(results).then((x)=>{
+        slideController.getSlidesPerPresentation(results,req.params.limit,req.params.offset).then((x)=>{
             return res.status(200).json({
             presentations: x 
         });

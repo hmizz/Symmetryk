@@ -16,6 +16,7 @@ export class AuthService {
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
   private username: String;
+  private accessTime: Date;
   constructor(private http: HttpClient, private router: Router, private companyService: CompanyService) {}
 
   getToken() {
@@ -60,9 +61,9 @@ export class AuthService {
             this.username = response.firstName;
             this.isAuthenticated = true;
             this.authStatusListener.next(true);
-            const now = new Date();
+            this.accessTime = new Date();
             const expirationDate = new Date(
-              now.getTime() + expiresInDuration * 1000);
+              this.accessTime.getTime() + expiresInDuration * 1000);
             this.saveAuthData(token, expirationDate,response.id, "response.accessLevel",response.firstName);
             this.router.navigate(["/products"]);
           }
@@ -95,15 +96,28 @@ export class AuthService {
         this.logout();
       }, duration * 1000);
     }
-   
 
   logout() {
-    this.token = null;
-    this.isAuthenticated = false;
-    this.authStatusListener.next(false);
-    clearTimeout(this.tokenTimer);
-    this.clearAuthData();
-    this.router.navigate(["/"]);
+    this.http
+    .patch<{loggedOut: Boolean}>(
+      "http://localhost:3000/api/user/" + this.getID() +"/logout",{accessTime: this.accessTime}
+    )
+    .subscribe(
+      (response) => {
+        if (response.loggedOut) {
+          this.token = null;
+          this.isAuthenticated = false;
+          this.authStatusListener.next(false);
+          clearTimeout(this.tokenTimer);
+          this.clearAuthData();
+          this.router.navigate([""]);
+        }
+      },
+      (err) => {
+        this.isAuthenticated = true;
+      }
+    );
+
   }
   private saveAuthData(token: string, expirationDate: Date,id: string, accessLevel : string,firstName:string) {
     localStorage.setItem("token", token);

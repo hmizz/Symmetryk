@@ -27,7 +27,8 @@ export class ProductsService {
               home_thumb_id:product.home_thumb_id,
               name: product.name,
               created_at:null,
-              updated_at:null
+              updated_at:null,
+              thumbURL: product.thumbURL
             };
           });
         })

@@ -22,7 +22,7 @@ export class PresentationsComponent implements OnInit, OnDestroy {
     this.routeSub =this.route.params.subscribe(queryParams => {
       this.productId = Number(queryParams['productId']);
    })
-    this.presentationsService.getpresentations(this.productId);
+    this.presentationsService.getpresentations(this.productId,2);
 
     this.presentationsSub = this.presentationsService.getpresentationUpdateListener()
       .subscribe((presentations: presentation[]) => {

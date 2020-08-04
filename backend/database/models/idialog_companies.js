@@ -1,5 +1,6 @@
-const { sequelize, DataTypes } = require('sequelize');
+const { sequelize, DataTypes, HasMany } = require('sequelize');
 const db = require('../db');
+const user = require('./users');
 
 const company = db.define('Company', {
 		id: {
@@ -33,4 +34,5 @@ const company = db.define('Company', {
 		timestamps: false,
 		tableName: 'idialog_companies'
 	});
+
 module.exports = company ;
