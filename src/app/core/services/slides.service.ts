@@ -3,15 +3,15 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { Subject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { slide } from "../models/slide-model";
+import { Slide } from "../models/slide-model";
 import { Router } from "@angular/router";
 import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: "root" })
 export class SlidesService {
-  private slides: slide[] = [];
+  private slides: Slide[] = [];
   
-  private slidesUpdated = new Subject<slide[]>();
+  private slidesUpdated = new Subject<Slide[]>();
   
 
   constructor(private http: HttpClient, private router: Router) {}

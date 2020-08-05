@@ -1,5 +1,5 @@
 <div class="Container" >
-    <a target="_blank" href="../../../assets/fond.png">
-    <img src="../../../assets/paysage.jpg"  alt="Snow" style="width:25%" >
+    <a target="_blank" href="../../../assets/fond.png" *ngFor="let slide of slides">
+    <img src="{{slide.thumbURL}}"  alt="Snow" style="width:25%" >
     </a>
 </div>

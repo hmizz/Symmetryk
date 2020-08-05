@@ -1,7 +1,7 @@
 const Product = require("../database/models/idialog_product");
 const db = require("../database/db");
 const { QueryTypes } = require('sequelize');
-const awsFile =require("../database/models/aws_file");
+const awsFileController =require("../controllers/awsfiles.controller");
 
 module.exports.getProducts = async function (req, res) {
   await db.query("SELECT idialog_product.id, thumb_id, name FROM idialog_product, idialog_users_has_products" +
@@ -13,7 +13,7 @@ module.exports.getProducts = async function (req, res) {
     if(results == null)
     return res.status(404).json({
       message: "Not Found"});
-      await this.getThumbs(results);
+      await awsFileController.getThumbsURL(results);
       res.status(200).json({
         products: results
     });
@@ -24,15 +24,6 @@ res.status(500).json({
   error: "Server Failed"
 });
 });
-}
-getThumbs = async function(products){
-  for(let product of products){
-    await awsFile.findByPk(product.thumb_id)
-    .then((url) => {
-      console.log(url);
-      product.thumbURL = url.cdnURL;
-    });
-  }
 }
 
 module.exports.allProducts = function (req, res) {};

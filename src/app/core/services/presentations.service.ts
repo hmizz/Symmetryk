@@ -28,6 +28,7 @@ export class PresentationsService {
               type:presentation.type,
               created_at:new Date(presentation.created_at).toLocaleString(),
               updated_at:new Date(presentation.updated_at).toLocaleString(),
+              slides: presentation.slides
             };
           });
         })

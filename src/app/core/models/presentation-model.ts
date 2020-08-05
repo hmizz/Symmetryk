@@ -5,4 +5,5 @@ export class presentation{
     index:number;
     created_at: Date;
     updated_at: Date;
+    slides : [] ;
 }

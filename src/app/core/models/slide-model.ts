@@ -1,4 +1,4 @@
-export class slide{
+export class Slide {
     id:number;
     name:string;
     title:string;
@@ -6,6 +6,7 @@ export class slide{
     section_id:number;
     image_id:number;
     html_id:number;
+    thumbId : number ;
     index:number;
 
 }
